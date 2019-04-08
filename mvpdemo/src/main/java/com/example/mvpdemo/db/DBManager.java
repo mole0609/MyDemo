@@ -54,7 +54,7 @@ public class DBManager {
      * 根据age的范围来删除使用者信息
      * */
     public void delete(User users){
-        db.delete("usertable","age >= ?",new String[]{String.valueOf(users.age)});
+        db.delete("usertable","age >= ?",new String[]{String.valueOf(users.username)});
     }
 
     /**
