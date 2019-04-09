@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements IUserLoginView {
     public void toMainActivity(User user) {
         Toast.makeText(this, user.getUsername() +
                 " login success , to MainActivity", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -1,1 +1,1 @@
-include ':app', ':mvpdemo', ':jnidemo'
+include ':app', ':mvpdemo', ':jnidemo', ':retrofitdemo'

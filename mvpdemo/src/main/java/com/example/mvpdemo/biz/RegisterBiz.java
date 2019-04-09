@@ -29,6 +29,7 @@ public class RegisterBiz implements IRegisterBiz {
                 } else {
                     registerListener.registerFailed();
                 }
+                c.close();
             }
         }.start();
     }

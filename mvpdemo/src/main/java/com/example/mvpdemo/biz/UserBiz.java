@@ -29,8 +29,7 @@ public class UserBiz implements IUserBiz {
                 } else {
                     loginListener.loginFailed();
                 }
-
-
+                c.close();
             }
         }.start();
     }
