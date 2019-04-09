@@ -7,9 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBOpenHelper extends SQLiteOpenHelper {
     private final static int DATABASE_VERSION = 1;
     private final static String DATABASE_NAME = "User.db";
+    private Context mContent;
 
     public DBOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+        mContent = context;
+
     }
 
     @Override

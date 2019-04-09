@@ -2,7 +2,7 @@ package com.example.mvpdemo.view;
 
 import com.example.mvpdemo.bean.User;
 
-public interface IUserLoginView {
+public interface IRegisterView {
     String getUserName();
 
     String getPassword();
@@ -15,9 +15,6 @@ public interface IUserLoginView {
 
     void showFailedError();
 
-    void clearUserName();
+    void register(User user);
 
-    void clearPassword();
-
-    void register();
 }

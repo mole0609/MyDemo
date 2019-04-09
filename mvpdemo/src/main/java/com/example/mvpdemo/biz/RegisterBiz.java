@@ -6,9 +6,9 @@ import android.database.Cursor;
 import com.example.mvpdemo.bean.User;
 import com.example.mvpdemo.db.DBManager;
 
-public class UserBiz implements IUserBiz {
+public class RegisterBiz implements IRegisterBiz {
     @Override
-    public void login(final Context context, final String username, final String password, final OnLoginListener loginListener) {
+    public void register(final Context context, final String username, final String password, final OnRegisterListener registerListener) {
         //模拟子线程耗时操作
         new Thread() {
             @Override
@@ -20,17 +20,15 @@ public class UserBiz implements IUserBiz {
                 }
 
                 DBManager dbManager = new DBManager(context);
-                Cursor c = dbManager.queryUserInfo(username, password);
-                if (c.moveToFirst()) {
+                Cursor c = dbManager.queryTheUsername(username);
+                if (!c.moveToFirst()) {
                     User user = new User();
                     user.setUsername(username);
                     user.setPassword(password);
-                    loginListener.loginSuccess(user);
+                    registerListener.registerSuccess(user);
                 } else {
-                    loginListener.loginFailed();
+                    registerListener.registerFailed();
                 }
-
-
             }
         }.start();
     }
