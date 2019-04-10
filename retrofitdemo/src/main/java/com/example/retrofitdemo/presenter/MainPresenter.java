@@ -1,7 +1,6 @@
 package com.example.retrofitdemo.presenter;
 
 import com.example.retrofitdemo.bean.Weather;
-import com.example.retrofitdemo.contract.MainContract;
 import com.example.retrofitdemo.model.MainRepository;
 import com.example.retrofitdemo.view.IView;
 

@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.retrofitdemo.api.DataRequest;
 import com.example.retrofitdemo.bean.Weather;
-import com.example.retrofitdemo.contract.MainContract;
 import com.example.retrofitdemo.presenter.IPresenter;
 
 import java.util.ArrayList;

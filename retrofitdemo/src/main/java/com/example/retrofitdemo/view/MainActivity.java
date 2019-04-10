@@ -6,11 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofitdemo.R;
 import com.example.retrofitdemo.bean.Weather;
-import com.example.retrofitdemo.contract.MainContract;
 import com.example.retrofitdemo.presenter.MainPresenter;
 
 import java.util.List;
@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements IView{
 
     private EditText mEditText;
     private Button mButton;
+    private TextView mTextView;
     private MainPresenter mPresenter;
     private String sCity;
     @Override
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements IView{
     private void initView(){
         mPresenter = new MainPresenter(this);
         mEditText = (EditText)findViewById(R.id.et_weather);
+        mTextView = (TextView) findViewById(R.id.tv_weather);
         mButton = (Button)findViewById(R.id.bt_weather);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,5 +72,6 @@ public class MainActivity extends AppCompatActivity implements IView{
         * */
         Log.d("NYDBG",sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
         Toast.makeText(getApplicationContext(),sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃",Toast.LENGTH_LONG).show();
+        mTextView.setText(sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
     }
 }
