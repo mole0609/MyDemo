@@ -1,6 +1,8 @@
 package com.example.retrofitdemo.view;
 
-import com.example.retrofitdemo.bean.Weather;
+import com.example.retrofitdemo.bean.AMapLocation;
+import com.example.retrofitdemo.bean.HeWeather;
+import com.example.retrofitdemo.model.AMapRepository;
 
 import java.util.List;
 
@@ -12,6 +14,7 @@ public interface IView {
     void getFailed();
 
     //把数据显示到view上
-    void setWeather(List<Weather> weathers);
+    void setWeather(List<HeWeather> weathers);
 
+    void setLocation(List<AMapLocation> aMapLocations);
 }

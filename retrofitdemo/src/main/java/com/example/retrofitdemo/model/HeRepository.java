@@ -3,8 +3,8 @@ package com.example.retrofitdemo.model;
 import android.util.Log;
 
 import com.example.retrofitdemo.api.DataRequest;
-import com.example.retrofitdemo.bean.Weather;
-import com.example.retrofitdemo.presenter.IPresenter;
+import com.example.retrofitdemo.bean.HeWeather;
+import com.example.retrofitdemo.presenter.IHePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +16,18 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class MainRepository {
-    private final static String KEY = "b917a84e33b9435990246c429a580f23";
+public class HeRepository {
+    private final static String HE_KEY = "b917a84e33b9435990246c429a580f23";
 
-    private final static String TAG = "MainRepository";
+    private final static String TAG = "HeRepository";
 
-    private final static String BASE_URL = "https://free-api.heweather.net/s6/weather/";
+    private final static String HE_BASE_URL = "https://free-api.heweather.net/s6/weather/";
 
-    private List<Weather> weathers = new ArrayList<>();
+    private List<HeWeather> weathers = new ArrayList<>();
 
-    private IPresenter presenter;
+    private IHePresenter presenter;
 
-    public MainRepository(IPresenter presenter) {
+    public HeRepository(IHePresenter presenter) {
         this.presenter = presenter;
     }
 
@@ -38,15 +38,15 @@ public class MainRepository {
      */
     public void getWeather(String location){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(HE_BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         DataRequest dataRequest = retrofit.create(DataRequest.class);
-        dataRequest.getNowWeather(location,KEY)
+        dataRequest.getHeNowWeather(location, HE_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Weather>() {
+                .subscribe(new Subscriber<HeWeather>() {
                     @Override
                     public void onCompleted() {
                         presenter.setWeather(weathers);
@@ -59,7 +59,7 @@ public class MainRepository {
                     }
 
                     @Override
-                    public void onNext(Weather weather) {
+                    public void onNext(HeWeather weather) {
                         weathers.add(weather);
                         Log.d(TAG, "onNext: " + weather.getHeWeather6().get(0).getBasic().getLocation());
                     }

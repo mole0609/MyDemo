@@ -10,17 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofitdemo.R;
-import com.example.retrofitdemo.bean.Weather;
-import com.example.retrofitdemo.presenter.MainPresenter;
+import com.example.retrofitdemo.bean.AMapLocation;
+import com.example.retrofitdemo.bean.HeWeather;
+import com.example.retrofitdemo.model.AMapRepository;
+import com.example.retrofitdemo.presenter.AMapPresenter;
+import com.example.retrofitdemo.presenter.HePresenter;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements IView{
 
     private EditText mEditText;
-    private Button mButton;
+    private Button mButtonGetWeather,mButtonGetLocation;
     private TextView mTextView;
-    private MainPresenter mPresenter;
+    private HePresenter mHePresenter;
+    private AMapPresenter mAMapPresenter;
     private String sCity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +34,23 @@ public class MainActivity extends AppCompatActivity implements IView{
     }
 
     private void initView(){
-        mPresenter = new MainPresenter(this);
+        mHePresenter = new HePresenter(this);
+        mAMapPresenter = new AMapPresenter(this);
         mEditText = (EditText)findViewById(R.id.et_weather);
         mTextView = (TextView) findViewById(R.id.tv_weather);
-        mButton = (Button)findViewById(R.id.bt_weather);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mButtonGetWeather = (Button)findViewById(R.id.bt_weather);
+        mButtonGetLocation = (Button)findViewById(R.id.bt_location);
+        mButtonGetWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sCity = mEditText.getText().toString();
-                Log.d("NYDBG","city"+sCity);
-                mPresenter.getWeather(sCity);
+                mHePresenter.getWeather(sCity);
+            }
+        });
+        mButtonGetLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAMapPresenter.getLocation();
             }
         });
     }
@@ -54,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements IView{
     }
 
     @Override
-    public void setWeather(List<Weather> weathers) {
+    public void setWeather(List<HeWeather> weathers) {
         /*
         tWindSpd.setText("风速: " + weathers.get(0).getHeWeather6().get(0).getNow().getWindSpd() + "公里/小时");
         tWindSc.setText("风力: " + weathers.get(0).getHeWeather6().get(0).getNow().getWindSc() + "级");
@@ -62,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements IView{
         tTmp.setText("温度: " + weathers.get(0).getHeWeather6().get(0).getNow().getTmp() + "℃");
         tParentCity.setText("市: " + weathers.get(0).getHeWeather6().get(0).getBasic().getParentCity());
         tLon.setText("经度: " + weathers.get(0).getHeWeather6().get(0).getBasic().getLon());
-        tLocation.setText("地区: " + weathers.get(0).getHeWeather6().get(0).getBasic().getLocation());
+        tLocation.setText("地区: " + weathers.get(0).getHeWeather6().get(0).getBasic().getLocationWithIP());
         tLat.setText("纬度: " + weathers.get(0).getHeWeather6().get(0).getBasic().getLat());
         tHum.setText("相对湿度: " + weathers.get(0).getHeWeather6().get(0).getNow().getHum());
         tFl.setText("体感温度: " + weathers.get(0).getHeWeather6().get(0).getNow().getFl() + "℃");
@@ -74,4 +85,11 @@ public class MainActivity extends AppCompatActivity implements IView{
         Toast.makeText(getApplicationContext(),sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃",Toast.LENGTH_LONG).show();
         mTextView.setText(sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
     }
+
+    @Override
+    public void setLocation(List<AMapLocation> aMapLocations) {
+//        Log.d("NYDBG setLocation : ",aMapLocations.get(0).getCity());
+//        mButtonGetLocation.setText((CharSequence) aMapLocations.get(0).getLocationWithIP().get(0).getCity());
+    }
+
 }

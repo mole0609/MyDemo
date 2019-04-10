@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Weather {
+public class HeWeather {
 
     @SerializedName("HeWeather6")
     private List<HeWeather6> heWeather6;
@@ -17,7 +17,7 @@ public class Weather {
         this.heWeather6 = heWeather6;
     }
 
-    public class HeWeather6{
+    public class HeWeather6 {
 
         //城市信息
         private Basic basic;
@@ -68,17 +68,17 @@ public class Weather {
         }
     }
 
-    public class Basic{
+    public class Basic {
 
         //地区id
         private String cid;
         //地区名称
         private String location;
         //地区所在的市级单位
-        @SerializedName(value = "parentCity",alternate = "parent_city")
+        @SerializedName(value = "parentCity", alternate = "parent_city")
         private String parentCity;
         //地区所在的省级单位
-        @SerializedName(value = "adminArea",alternate = "admin_area")
+        @SerializedName(value = "adminArea", alternate = "admin_area")
         private String adminArea;
         //地区所在的国家
         private String cnty;
@@ -168,29 +168,29 @@ public class Weather {
         }
     }
 
-    public class Now{
+    public class Now {
 
         //体感温度
         private String fl;
         //温度
         private String tmp;
         //实况天气状况代码
-        @SerializedName(value = "condCode",alternate = "cond_code")
+        @SerializedName(value = "condCode", alternate = "cond_code")
         private String condCode;
         //实况天气状况描述
-        @SerializedName(value = "condTxt",alternate = "cond_txt")
+        @SerializedName(value = "condTxt", alternate = "cond_txt")
         private String condTxt;
         //风向360角度
-        @SerializedName(value = "windDeg",alternate = "wind_deg")
+        @SerializedName(value = "windDeg", alternate = "wind_deg")
         private String windDeg;
         //风向
-        @SerializedName(value = "windDir",alternate = "wind_dir")
+        @SerializedName(value = "windDir", alternate = "wind_dir")
         private String windDir;
         //风力
-        @SerializedName(value = "windSc",alternate = "wind_sc")
+        @SerializedName(value = "windSc", alternate = "wind_sc")
         private String windSc;
         //风速
-        @SerializedName(value = "windSpd",alternate = "wind_spd")
+        @SerializedName(value = "windSpd", alternate = "wind_spd")
         private String windSpd;
         //相对湿度
         private String hum;
@@ -327,7 +327,7 @@ public class Weather {
         }
     }
 
-    public class Update{
+    public class Update {
 
         //当地时间
         private String loc;
