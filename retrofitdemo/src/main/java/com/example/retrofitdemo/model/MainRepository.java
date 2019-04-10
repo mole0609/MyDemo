@@ -18,12 +18,12 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainRepository {
-    private final static String KEY = "你自己的key";
+    private final static String KEY = "b917a84e33b9435990246c429a580f23";
 
     private final static String TAG = "MainRepository";
 
     private final static String BASE_URL = "https://free-api.heweather.net/s6/weather/";
-    String param = "key=xxxxxxxxxxxxxxxxxxx&location=北京";
+
     private List<Weather> weathers = new ArrayList<>();
 
     private IPresenter presenter;

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements IView{
         tCnty.setText("国家: " + weathers.get(0).getHeWeather6().get(0).getBasic().getCnty());
         tAdminArea.setText("省: " + weathers.get(0).getHeWeather6().get(0).getBasic().getAdminArea());
         * */
-        Log.d("NYDBG","Weather"+weathers.get(0).getHeWeather6().get(0).getNow().getTmp());
-
+        Log.d("NYDBG",sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
+        Toast.makeText(getApplicationContext(),sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃",Toast.LENGTH_LONG).show();
     }
 }
