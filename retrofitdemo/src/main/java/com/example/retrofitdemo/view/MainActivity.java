@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity implements IView{
 
     @Override
     public void setLocation(List<AMapLocation> aMapLocations) {
-//        Log.d("NYDBG setLocation : ",aMapLocations.get(0).getCity());
-//        mButtonGetLocation.setText((CharSequence) aMapLocations.get(0).getLocationWithIP().get(0).getCity());
+        Log.d("NYDBG setLocation : ",aMapLocations.get(0).getCity());
+        mButtonGetLocation.setText((CharSequence) aMapLocations.get(0).getCity());
     }
 
 }

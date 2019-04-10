@@ -41,16 +41,14 @@ public class AMapRepository {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         DataRequest dataRequest = retrofit.create(DataRequest.class);
-//        dataRequest.getLocationWithIP(IP,LBS_KEY_WEB)
-        dataRequest.getLocation(LBS_KEY_WEB)
+        dataRequest.getLocationWithIP(IP,LBS_KEY_WEB)
+//        dataRequest.getLocation(LBS_KEY_WEB)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<AMapLocation>() {
-
                     @Override
                     public void onCompleted() {
                         presenter.setLocation(locations);
-                        Log.d(TAG, "onCompleted: " + "-------------");
                     }
 
                     @Override
@@ -60,6 +58,7 @@ public class AMapRepository {
 
                     @Override
                     public void onNext(AMapLocation aMapLocation) {
+                        locations.add(aMapLocation);
                         Log.d(TAG, "onNext: " + ""+aMapLocation);
                     }
                 });

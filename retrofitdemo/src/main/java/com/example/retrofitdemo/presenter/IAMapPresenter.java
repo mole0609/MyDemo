@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IAMapPresenter {
     void getLocation();
-    
+
     void setLocation(List<AMapLocation> aMapLocations);
 
 }
