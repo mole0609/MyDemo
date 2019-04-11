@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aidlclientdemo" />
+            <option value="$PROJECT_DIR$/aidlserverdemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/jnidemo" />
             <option value="$PROJECT_DIR$/mvpdemo" />
