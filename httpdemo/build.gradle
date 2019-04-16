@@ -6,8 +6,8 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.mvpdemo"
-        minSdkVersion 23
+        applicationId "com.example.httpdemo"
+        minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

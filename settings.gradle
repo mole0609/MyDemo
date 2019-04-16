@@ -1,1 +1,1 @@
-include ':app', ':mvpdemo', ':jnidemo', ':retrofitdemo', ':aidlserverdemo', ':aidlclientdemo'
+include ':app', ':mvpdemo', ':jnidemo', ':retrofitdemo', ':aidlserverdemo', ':aidlclientdemo', ':httpdemo'
