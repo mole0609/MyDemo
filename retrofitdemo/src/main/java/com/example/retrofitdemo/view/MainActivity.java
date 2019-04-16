@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.retrofitdemo.R;
 import com.example.retrofitdemo.bean.AMapLocation;
 import com.example.retrofitdemo.bean.HeWeather;
-import com.example.retrofitdemo.model.AMapRepository;
 import com.example.retrofitdemo.presenter.AMapPresenter;
 import com.example.retrofitdemo.presenter.HePresenter;
 
@@ -22,10 +21,11 @@ public class MainActivity extends AppCompatActivity implements IView{
 
     private EditText mEditText;
     private Button mButtonGetWeather,mButtonGetLocation;
-    private TextView mTextView;
+    private TextView mTextView,mEtLocationWeather;
     private HePresenter mHePresenter;
     private AMapPresenter mAMapPresenter;
     private String sCity;
+    private String location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +38,17 @@ public class MainActivity extends AppCompatActivity implements IView{
         mAMapPresenter = new AMapPresenter(this);
         mEditText = (EditText)findViewById(R.id.et_weather);
         mTextView = (TextView) findViewById(R.id.tv_weather);
-        mButtonGetWeather = (Button)findViewById(R.id.bt_weather);
+        mEtLocationWeather = (TextView) findViewById(R.id.tv_location_weather);
+        mButtonGetWeather = (Button)findViewById(R.id.bt_current_weather);
         mButtonGetLocation = (Button)findViewById(R.id.bt_location);
         mButtonGetWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sCity = mEditText.getText().toString();
+                if (sCity.isEmpty()){
+                    sCity = location;
+                    Log.d("NYDBG","city is null");
+                }
                 mHePresenter.getWeather(sCity);
             }
         });
@@ -84,12 +89,15 @@ public class MainActivity extends AppCompatActivity implements IView{
         Log.d("NYDBG",sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
         Toast.makeText(getApplicationContext(),sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃",Toast.LENGTH_LONG).show();
         mTextView.setText(sCity+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
+//        mEtLocationWeather.setText(location+"天气："+weathers.get(0).getHeWeather6().get(0).getNow().getTmp()+"℃");
     }
 
     @Override
     public void setLocation(List<AMapLocation> aMapLocations) {
         Log.d("NYDBG setLocation : ",aMapLocations.get(0).getCity());
+        location = aMapLocations.get(0).getCity();
         mButtonGetLocation.setText((CharSequence) aMapLocations.get(0).getCity());
+        mHePresenter.getWeather(aMapLocations.get(0).getCity());
     }
 
 }
